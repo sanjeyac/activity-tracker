@@ -1,12 +1,21 @@
 #!/bin/sh
 
+# install  in cron 
+
+# crontab -e
+# * * * * * DISPLAY=:0 /path/to/tracker.sh once
+
 #params
 DB=/opt/activityTracker/activity.db
+
+USER=$(whoami)
+#echo "$(date) running as $USER" >> /tmp/trackerlog
 
 #posix version
 track() {
   WINDOW=$(xdotool getactivewindow getwindowname)
   UNIXTIME=$(date +%s)
+  #echo "$(date) inserting...  $WINDOW" >> /tmp/trackerlog
   if [ "$(id -u)" -ne 0 ]; then # if user is not root
     if [ -n "$WINDOW" ]; then # if window variable is not empty
       sqlite3 $DB "insert into activity (unixtime,window) values ($UNIXTIME,\"$WINDOW\");"
@@ -23,7 +32,7 @@ case "$1" in
     while [ true ]
     do
         track
-        sleep 5 #1 minute
+        sleep 60 #1 minute
     done
     track
     ;;
