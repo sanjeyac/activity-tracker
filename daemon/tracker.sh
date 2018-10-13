@@ -4,6 +4,8 @@
 
 # crontab -e
 # * * * * * DISPLAY=:0 /path/to/tracker.sh once
+# TODO: autocreate -- (crontab -l 2>/dev/null; echo "*/5 * * * * /path/to/job -with args") | crontab -
+
 
 #params
 DB=/opt/activityTracker/activity.db
@@ -27,6 +29,7 @@ track() {
 case "$1" in
 
   start)
+    #loop without cron tab
     echo -n "Starting Tracking Deamon .... "
     # acquisizione ora e finestra di lavoro
     while [ true ]
