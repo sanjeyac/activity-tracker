@@ -7,7 +7,7 @@ DB=/opt/activityTracker/activity.db
 track() {
   WINDOW=$(xdotool getactivewindow getwindowname)
   UNIXTIME=$(date +%s)
-  if [[ $EUID -ne 0 ]]; then # if user is not root
+  if [ "$(id -u)" -ne 0 ]; then # if user is not root
     if [ -n "$WINDOW" ]; then # if window variable is not empty
       sqlite3 $DB "insert into activity (unixtime,window) values ($UNIXTIME,\"$WINDOW\");"
     fi
