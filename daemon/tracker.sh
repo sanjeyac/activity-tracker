@@ -30,7 +30,7 @@ case "$1" in
 
   init)
     echo "init db"
-    sqlite3 $DB "CREATE TABLE `activity` ( `unixtime` INTEGER NOT NULL, `window` TEXT NOT NULL, PRIMARY KEY(`unixtime`) );"
+    sqlite3 $DB "CREATE TABLE activity ( unixtime INTEGER NOT NULL, window TEXT NOT NULL, PRIMARY KEY(unixtime) );"
     ;;
 
   once)
