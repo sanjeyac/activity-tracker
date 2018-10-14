@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="lib/bootstrap.min.css">
+  <link rel="stylesheet" href="lib/chartist.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <title>Activity Tracker</title>
+</head>
+
+<body>
+
+  <div class="container-fluid">
+
+    <div class="row">
+    
+      <div class="col">
+        <div class="card">
+          <label>Ora inizio</label>
+          <span id="oraInizio" class="value">09:00</span>
+        </div>
+      </div>
+    
+      <div class="col">
+        <div class="card">
+          <label>Ora fine</label>
+          <span id="oraInizio" class="value">18:30</span>
+        </div>
+      </div>
+    
+      <div class="col">
+        <div class="card blue">
+          <label>Totale ore</label>
+          <span id="oraInizio" class="value">9.5 ore</span>
+        </div>
+      </div>
+    
+      <div class="col">
+        <div class="card blue">
+          <label>Produttività</label>
+          <span id="oraInizio" class="value">100%</span>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="row top-spaced">
+    
+        <div class="col">
+          <div class="card chart">
+            <label>Applicazioni</label>
+            <div id="ct-chart1"></div>
+          </div>
+        </div>
+      
+        <div class="col">
+          <div class="card blue chart">
+            <label>Categorie</label>
+            <div id="ct-chart2"></div>
+          </div>
+        </div>
+        
+      </div>
+
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script>
+    require('jquery');
+    require('bootstrap');
+    require('./renderer.js')
+  </script>
+</body>
+
+</html>
