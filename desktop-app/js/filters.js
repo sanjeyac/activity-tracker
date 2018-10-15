@@ -5,7 +5,13 @@ const endToday = moment().endOf('day');
 
 function contains(value){
     return function(input){
-        return input.toLowerCase().indexOf(value.toLowerCase())>1;
+        return input.toLowerCase().indexOf(value.toLowerCase())>=0;
+    }
+}
+
+function containsAny(value){
+    return function(input){
+        return input.toLowerCase().indexOf(value.toLowerCase())>=0;
     }
 }
 
@@ -33,20 +39,28 @@ module.exports = {
     WebPages : {
         "Facebook": contains("facebook"),
         "GMail": contains("inbox"),
-        "Safety": contains("safety"),
-        "DoGi": contains("dogi")
+        "Linkedin": contains("linkedin"),
+        "Trello": contains("trello"),
+        "StackOverflow": contains("Stack Overflow")
     },    
 
     with : function(filters,data){
+
         let labels = [];
         let values = [];
         for (var filter in filters) {
             if (filters.hasOwnProperty(filter)) {
                 let filterFunction = filters[filter];
+                for (var k in data){
+                    var el = data[k];
+                    var res = filterFunction(el);
+                    console.log( "filtering: ",el,res,filter)
+                }
                 let value = data.filter(filterFunction).length;
-                console.log( "filter faunction ", filter, value)
-                labels.push(filter);
-                values.push(value);
+                if (value>0){
+                    labels.push(filter);
+                    values.push(value);
+                }
             }
         }
         return { values, labels };
