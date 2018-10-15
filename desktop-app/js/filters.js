@@ -27,7 +27,11 @@ module.exports = {
         "Visual Studio Code": contains("Visual Studio"),
         "Firefox": contains("Firefox"),
         "Chrome": contains("Chrome"),
-        "Terminal": contains("Terminal")
+        "Terminal": contains("Terminal"),
+        "NetBeans": contains("Nebeans"),
+        "Eclipse": contains("Eclipse"),
+        "Atom": contains("atom"),
+        "Telegram": contains("Telegram")
     },
 
     Categories : {
