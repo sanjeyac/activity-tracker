@@ -17,7 +17,8 @@ body {
     text-transform: uppercase;
     font-weight: 300;
     font-size: 12px;
-    color: #757a88;
+    /*color: #757a88;*/
+    color:white;
     margin-bottom: 0px;
 }
 
