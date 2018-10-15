@@ -10,10 +10,8 @@ function isToday(input){
     return moment.unix(input.unixtime).isBetween(startToday,endToday);
 }
 
-DB.getDataFromDB().then( data => {
 
-    // let isToday = Filters.Time.today;
-
+function calculateMainKPIfrom(data){
     let start = data.filter(isToday).map( item => item.unixtime).reduce( (item,acc) => Math.min(item,acc) );
     let startTime = moment.unix(start);
 
@@ -29,6 +27,9 @@ DB.getDataFromDB().then( data => {
 
     $('#efficency').html('Soon..');
 
+}
+
+function drawChartsFrom(data){
     let windowData = data.map ( item => item.window );
 
     let apps = Filters.with( Filters.Applications , windowData);
@@ -47,10 +48,11 @@ DB.getDataFromDB().then( data => {
         values: categories.values
     });    
     
-    let windowWebpagesData = data
+
+    let justWebPagesData = data
         .map( item => item.window )
         .filter( item => Filters.Applications.Firefox(item) || Filters.Applications.Chrome(item) ) ;
-    let webpages = Filters.with( Filters.WebPages , windowWebpagesData);
+    let webpages = Filters.with( Filters.WebPages , justWebPagesData);
 
     Charts.drawBars({
         element: 'websitechart',
@@ -58,6 +60,12 @@ DB.getDataFromDB().then( data => {
         values: webpages.values
     });        
 
+}
+
+
+DB.getDataFromDB().then( data => {
+
+    calculateMainKPIfrom(data);
+    drawChartsFrom(data);
+
 }).catch(err=> console.log(err));
-
-
