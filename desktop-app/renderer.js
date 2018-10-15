@@ -48,14 +48,13 @@ DB.getDataFromDB().then( data => {
 
     $('#efficency').html('Soon..');
 
-    Charts.drawPie({
-        labels: ['Visual Studio', 'Terminal',  'Firefox', 'Chrome'],
-        series: [vscode,terminal,firefox,chrome]
-    },'#ct-chart1');
 
     Charts.drawPie({
+        element: 'appchart',
         labels: ['Visual Studio', 'Terminal',  'Firefox', 'Chrome'],
-        series: [vscode,terminal,firefox,chrome]
-    },'#ct-chart2');    
+        values: [vscode,terminal,firefox,chrome]
+    });    
 
 }).catch(err=> console.error(err));
+
+

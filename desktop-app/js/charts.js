@@ -1,33 +1,45 @@
-var Chartist = require('../lib/chartist.min.js');
+var Chart = require('chart.js');
 
-function drawPie(data, element){
-      
-    var options = {
-      width: '100%',
-      height: '150px',
-      labelInterpolationFnc: function(value) {
-        return value[0]
-      }
-    };
-    
-    var responsiveOptions = [
-      ['screen and (min-width: 640px)', {
-        chartPadding: 30,
-        labelOffset: 100,
-        labelDirection: 'explode',
-        labelInterpolationFnc: function(value) {
-          return value;
-        }
-      }],
-      ['screen and (min-width: 1024px)', {
-        labelOffset: 80,
-        chartPadding: 20
+function drawPie(options) {
+  var ctx = document.getElementById(options.element).getContext('2d');
+  return new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: options.labels,
+      datasets: [{
+        data: options.values,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
       }]
-    ];
-    
-    new Chartist.Pie(element, data, options, responsiveOptions);
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
 }
 
+
 module.exports = {
-    drawPie: drawPie
+  drawPie: drawPie
 }
