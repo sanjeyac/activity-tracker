@@ -32,9 +32,9 @@ module.exports = {
     
     WebPages : {
         "Facebook": contains("facebook"),
-        "Firefox": contains("Firefox"),
-        "Chrome": contains("Chrome"),
-        "Terminal": contains("Terminal")
+        "GMail": contains("inbox"),
+        "Safety": contains("safety"),
+        "DoGi": contains("dogi")
     },    
 
     with : function(filters,data){
