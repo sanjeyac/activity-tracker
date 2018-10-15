@@ -21,23 +21,32 @@ function isChrome(input){
     return input.window.indexOf("Chrome")>1;
 }
 
-function isToday(unixtime){
-    return moment.unix(unixtime).isBetween(startToday,endToday);
+function isToday(input){
+    return moment.unix(input.unixtime).isBetween(startToday,endToday);
 
 }
 
 DB.getDataFromDB().then( data => {
 
-    // var todaysData = data.filter(isToday);
-    // var minHour = todaysData.reduce( (item,acc) => acc = Math.min(item.unixtime,acc) );
-    // var maxHour = todaysData.reduce( (item,acc) => acc = Math.max(item.unixtime,acc) );
-    // $('#oraInizio').html(minHour.toString());
-    // $('#oraFine').html(minHour.toString());
+    let vscode = data.filter(isVisualStudio).length;
+    let terminal = data.filter(isTerminal).length;
+    let firefox = data.filter(isFirefox).length;
+    let chrome = data.filter(isChrome).length;
 
-    var vscode = data.filter(isVisualStudio).length;
-    var terminal = data.filter(isTerminal).length;
-    var firefox = data.filter(isFirefox).length;
-    var chrome = data.filter(isChrome).length;
+    let start = data.filter(isToday).map( item => item.unixtime).reduce( (item,acc) => Math.min(item,acc) );
+    let startTime = moment.unix(start);
+
+    let last = data.filter(isToday).map( item => item.unixtime).reduce( (item,acc) => Math.max(item,acc) );
+    let lastTime = moment.unix(last);    
+
+    $('#startTime').html(startTime.format("HH:mm"));
+    $('#lastTime').html(lastTime.format("HH:mm"));
+
+    let duration = moment.duration(lastTime.diff(startTime));
+    let hours = duration.asHours().toFixed(2);    
+    $('#total').html(hours);
+
+    $('#efficency').html('Soon..');
 
     Charts.drawPie({
         labels: ['Visual Studio', 'Terminal',  'Firefox', 'Chrome'],
@@ -49,4 +58,4 @@ DB.getDataFromDB().then( data => {
         series: [vscode,terminal,firefox,chrome]
     },'#ct-chart2');    
 
-});
+}).catch(err=> console.error(err));

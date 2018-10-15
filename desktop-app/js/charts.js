@@ -3,6 +3,8 @@ var Chartist = require('../lib/chartist.min.js');
 function drawPie(data, element){
       
     var options = {
+      width: '100%',
+      height: '150px',
       labelInterpolationFnc: function(value) {
         return value[0]
       }
