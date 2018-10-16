@@ -12,10 +12,10 @@ function isToday(input){
 
 
 function calculateMainKPIfrom(data){
-    let start = data.filter(isToday).map( item => item.unixtime).reduce( (item,acc) => Math.min(item,acc) );
+    let start = data.map( item => item.unixtime).reduce( (item,acc) => Math.min(item,acc) );
     let startTime = moment.unix(start);
 
-    let last = data.filter(isToday).map( item => item.unixtime).reduce( (item,acc) => Math.max(item,acc) );
+    let last = data.map( item => item.unixtime).reduce( (item,acc) => Math.max(item,acc) );
     let lastTime = moment.unix(last);    
 
     $('#startTime').html(startTime.format("HH:mm"));
@@ -26,10 +26,10 @@ function calculateMainKPIfrom(data){
     $('#total').html(hours);
 
     $('#efficency').html('Soon..');
-
 }
 
 function drawChartsFrom(data){
+
     let windowData = data.map ( item => item.window );
 
     let apps = Filters.with( Filters.Applications , windowData);
@@ -40,7 +40,6 @@ function drawChartsFrom(data){
         values: apps.values
     });    
 
-
     let categories = Filters.with( Filters.Categories , windowData);
     Charts.drawPie({
         element: 'categorychart',
@@ -48,7 +47,6 @@ function drawChartsFrom(data){
         values: categories.values
     });    
     
-
     let justWebPagesData = data
         .map( item => item.window )
         .filter( item => Filters.Applications.Firefox(item) || Filters.Applications.Chrome(item) ) ;
@@ -64,6 +62,8 @@ function drawChartsFrom(data){
 
 
 DB.getDataFromDB().then( data => {
+
+    // let todaysData = data.filter(isToday);
 
     calculateMainKPIfrom(data);
     drawChartsFrom(data);

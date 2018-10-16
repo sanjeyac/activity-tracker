@@ -35,7 +35,6 @@ case "$1" in
   start)
     #loop without cron tab
     echo -n "Starting Tracking Deamon .... "
-    # acquisizione ora e finestra di lavoro
     while [ true ]
     do
         track
