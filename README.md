@@ -20,6 +20,7 @@ todo...
 ## RoadMap / Todo
 
 - Complete documentation
+- Tons of validations
 - CronTab installer script
 - Custom Filters
 - Piivate mode, at the moment anythong will be tracked
