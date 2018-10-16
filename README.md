@@ -20,6 +20,8 @@ todo...
 ## RoadMap / Todo
 
 - Complete documentation
+- Writing tests
+- Refactor architecture with a solid structure ( current version is just a proof of concept)
 - CronTab installer script
 - Custom Filters
 - Piivate mode, at the moment anythong will be tracked
