@@ -8,24 +8,24 @@ Activity Tracker is a Cloudless software usage tracker.
 
 ## Why this project?
 
-Life is a empty jar, you can feel it with Rocks (very important things... family, friends, life goals, etc.), Pebbles ( job, house, etc. ) and Sand ( things that are remaining small things), if you fill the jar with a time wasting sand, there will be no space for Rocks and Pebbles.
+Life is an empty jar, you can fill it with Rocks (very important things like family, friends, life goals, etc.), Pebbles ( job, house, etc. ) and Sand ( small things that are remaining small), if you fill the jar with time wasting sand, there will be no space for Rocks and Pebbles.
 
 ## How to install / Compile
 ### Daemon
-todo...
+TODO...
 
 ### Desktop App
-todo...
+TODO...
 
 ## RoadMap / Todo
 
 - Complete documentation
 - Writing tests
-- Refactor architecture with a solid structure ( current version is just a proof of concept)
+- Refactor architecture with a solid MVC structure ( current version is just a proof of concept)
 - CronTab installer script
-- Custom Filters
-- Piivate mode, at the moment anythong will be tracked
-- Current daemon works onnly on Linux, maybe a Windows and MacOS version will created in the future
+- Custom Filters (Matchers)
+- Private mode, at the moment anything will be tracked
+- Current daemon works on Linux, maybe Windows and MacOS will bu supported
 
 ## Tech
 
