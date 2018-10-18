@@ -10,3 +10,8 @@ test('MatcherSet with one matcher "firefox" on one instant "Mozilla Firefox" sho
     let computation = set.count([instant]);    
     expect( computation ).toBe(1);
 });
+
+test('MatcherSet create a matcher set with two matchers', () => {
+    let set = MatcherSet('Browsers', ['Firefox','Chromium']);
+    expect( set.matchers ).toBe(2);
+});

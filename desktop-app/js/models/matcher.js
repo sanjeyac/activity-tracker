@@ -1,8 +1,8 @@
 class Matcher{
 
     constructor(regex, name){
-        this.name = name;
         this.regex = regex;
+        this.name = name; //optional
     }
 
     match(instant){
