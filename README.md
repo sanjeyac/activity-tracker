@@ -22,6 +22,7 @@ TODO...
 - Complete documentation
 - Writing tests
 - Refactor architecture with a solid MVC structure ( current version is just a proof of concept)
+- Tons of validations
 - CronTab installer script
 - Custom Filters (Matchers)
 - Private mode, at the moment anything will be tracked

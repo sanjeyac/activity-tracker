@@ -3,6 +3,7 @@ const Charts = require('./js/charts.js');
 const $ = require('jquery');
 const moment = require('moment');
 const Filters = require('./js/filters.js');
+const KPI = require('./js/kpis.js');
 const startToday = moment().startOf('day');
 const endToday = moment().endOf('day'); 
 
@@ -12,26 +13,16 @@ function isToday(input){
 
 
 function calculateMainKPIfrom(data){
-    let start = data.map( item => item.unixtime).reduce( (item,acc) => Math.min(item,acc) );
-    let startTime = moment.unix(start);
-
-    let last = data.map( item => item.unixtime).reduce( (item,acc) => Math.max(item,acc) );
-    let lastTime = moment.unix(last);    
-
-    $('#startTime').html(startTime.format("HH:mm"));
-    $('#lastTime').html(lastTime.format("HH:mm"));
-
-    let duration = moment.duration(lastTime.diff(startTime));
-    let hours = duration.asHours().toFixed(2);    
-    $('#total').html(hours);
-
-    $('#efficency').html('Soon..');
+    let kpi = KPI.kpi(data.map( item => item.unixtime) );
+    $('#startTime').html(kpi.startTime.format("HH:mm"));
+    $('#lastTime').html(kpi.lastTime.format("HH:mm"));
+    $('#total').html(kpi.hours);
+    $('#efficiency').html(kpi.efficiency);
 }
 
 function drawChartsFrom(data){
 
     let windowData = data.map ( item => item.window );
-
     let apps = Filters.with( Filters.Applications , windowData);
 
     Charts.drawPie({
@@ -62,10 +53,6 @@ function drawChartsFrom(data){
 
 
 DB.getDataFromDB().then( data => {
-
-    // let todaysData = data.filter(isToday);
-
     calculateMainKPIfrom(data);
     drawChartsFrom(data);
-
 }).catch(err=> console.log(err));
