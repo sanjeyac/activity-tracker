@@ -1,12 +1,12 @@
 class Matcher{
 
-    constructor(name, regex){
+    constructor(regex, name){
         this.name = name;
         this.regex = regex;
     }
 
     match(instant){
-        var patt = new RegExp(this.regex);
+        let patt = new RegExp(this.regex);
         return patt.test(instant.window);
     }
 
