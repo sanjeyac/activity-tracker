@@ -23,7 +23,10 @@ TODO: Installer
 ### Manual installation
 launch tracker.sh in daemon with parameter "once" every minute in crontab, using "crontab -e" command
 
-> * * * * * DISPLAY=:0 /opt/activity-tracker/tracker.sh once
+i.e.
+<pre>
+* * * * * DISPLAY=:0 /opt/activity-tracker/tracker.sh once
+</pre>
 
 ### Desktop App
 
