@@ -12,10 +12,33 @@ Life is an empty jar, you can fill it with Rocks (very important things like fam
 
 ## How to install / Compile
 ### Daemon
-TODO...
+
+you need xdotool
+
+install xdotool in ubuntu/debian:
+
+> sudo apt install xdotool
+TODO: Installer
+
+### Manual installation
+launch tracker.sh in daemon with parameter "once" every minute in crontab, using "crontab -e" command
+
+> * * * * * DISPLAY=:0 /opt/activity-tracker/tracker.sh once
 
 ### Desktop App
-TODO...
+
+TODO: binary package
+
+####  Running from source
+
+
+Desktop-app: go to desktop-app folder and:
+
+> yarn
+
+> yarn rebuild
+
+> yarn start
 
 ## RoadMap / Todo
 
