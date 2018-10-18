@@ -1,3 +1,9 @@
+//utils for reduce
+function sum(a, b) {
+    return a + b;
+}
+
+
 class MatcherSet {
 
     constructor(name,matchers){
@@ -5,18 +11,15 @@ class MatcherSet {
         this.matchers = matchers;
     }
 
-    getCounts(datainstants){
+    count(datainstants){
 
         if (!this.matchers){
             return []; //avoid null reference
         }
 
-        return this.matchers.map( matcher => { 
-            return {
-                name: matcher.name, 
-                value: matcher.matchCountOf(datainstants) 
-            }
-        });
+        return this.matchers
+                    .map( matcher => matcher.matchCountOf(datainstants) )
+                    .reduce(sum,0);
     }    
 
 }

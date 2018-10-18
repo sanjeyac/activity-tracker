@@ -1,15 +1,14 @@
 class ChartDataModel {
 
-    constructor(domElement,matcherSet,chartType) {
+    constructor(matcherSets,chartType,domElement) {
         this.dom = domElement;
-        this.matcherSet = matcherSet;
+        this.matcherSets = matcherSets;
         this.chartType = chartType;
     }
 
     drawModel(datainstants) {
-        let data = matcherSet.getCounts(datainstants);
-        let labels = data.map( item => item.name );
-        let values = data.map( item => item.value );
+        let labels = this.matcherSets.map( set => set.name );
+        let values = this.matcherSets.map( set => set.count(datainstants) );
         return {labels,values};
     }
 }
