@@ -1,4 +1,4 @@
-export default class MatcherSet {
+class MatcherSet {
 
     constructor(name,matchers){
         this.name = name;
@@ -15,3 +15,5 @@ export default class MatcherSet {
     }    
 
 }
+
+module.exports = MatcherSet;

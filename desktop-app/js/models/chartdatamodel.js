@@ -1,4 +1,4 @@
-export default class ChartDataModel {
+class ChartDataModel {
 
     constructor(domElement,matcherSet,chartType) {
         this.dom = domElement;
@@ -13,3 +13,5 @@ export default class ChartDataModel {
         return {labels,values};
     }
 }
+
+module.exports = ChartDataModel;

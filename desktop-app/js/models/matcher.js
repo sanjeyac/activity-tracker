@@ -1,4 +1,4 @@
-export default class Matcher{
+class Matcher{
 
     constructor(name, regex){
         this.name = name;
@@ -6,7 +6,7 @@ export default class Matcher{
     }
 
     match(instant){
-        var patt = new RegExp(regex);
+        var patt = new RegExp(this.regex);
         return patt.test(instant.window);
     }
 
@@ -15,3 +15,5 @@ export default class Matcher{
     }
 
 }
+
+module.exports = Matcher;
