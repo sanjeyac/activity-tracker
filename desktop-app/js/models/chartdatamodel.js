@@ -7,7 +7,7 @@ class ChartDataModel {
     }
 
     drawModel(datainstants) {
-        let data = matcherSet.getCounts(datainstants)
+        let data = matcherSet.getCounts(datainstants);
         let labels = data.map( item => item.name );
         let values = data.map( item => item.value );
         return {labels,values};

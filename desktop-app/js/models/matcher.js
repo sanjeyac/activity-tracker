@@ -6,12 +6,16 @@ class Matcher{
     }
 
     match(instant){
-        let patt = new RegExp(this.regex);
-        return patt.test(instant.window);
+        if (this.regex){ //force string type check
+            let patt = new RegExp(this.regex);
+            return patt.test(instant.window);
+        }
+        return false;
     }
 
     matchCountOf(datainstants){
-        return datainstants.filter( this.match ).length;
+        let that = this;
+        return datainstants.filter( instant => that.match(instant) ).length;
     }
 
 }

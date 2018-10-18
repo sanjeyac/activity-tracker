@@ -6,7 +6,12 @@ class MatcherSet {
     }
 
     getCounts(datainstants){
-        return matchers.map( matcher => { 
+
+        if (!this.matchers){
+            return []; //avoid null reference
+        }
+
+        return this.matchers.map( matcher => { 
             return {
                 name: matcher.name, 
                 value: matcher.matchCountOf(datainstants) 
