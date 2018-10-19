@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "activity-tracker",
+  "version": "0.0.1",
+  "description": "Desktop software and activity usage tracker",
   "main": "js/main.js",
   "scripts": {
     "start": "electron .",
@@ -16,8 +16,7 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "sanjeyac",
   "devDependencies": {
     "electron": "^2.0.11",
     "electron-rebuild": "^1.6.0",

@@ -1,6 +1,24 @@
 var Chart = require('chart.js');
 const $ = require('jquery');
 
+const BG_COLORS = [
+  'rgba(255, 99, 132, 1)',
+  'rgba(54, 162, 235, 1)',
+  'rgba(255, 206, 86, 1)',
+  'rgba(75, 192, 192, 1)',
+  'rgba(153, 102, 255, 1)',
+  'rgba(255, 159, 64, 1)'
+];
+
+const FG_COLORS = [
+  'rgba(255, 99, 132, 1)',
+  'rgba(54, 162, 235, 1)',
+  'rgba(255, 206, 86, 1)',
+  'rgba(75, 192, 192, 1)',
+  'rgba(153, 102, 255, 1)',
+  'rgba(255, 159, 64, 1)'
+];
+
 //utility
 function makeid() {
   var text = "";
@@ -27,30 +45,16 @@ function groupByTwo(array){
   }, [] )  
 }
 
-function drawPie(options) {
+function draw(options) {
   var ctx = document.getElementById(options.element).getContext('2d');
   return new Chart(ctx, {
-    type: 'pie',
+    type: options.type,
     data: {
       labels: options.labels,
       datasets: [{
         data: options.values,
-        backgroundColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
+        backgroundColor: BG_COLORS,
+        borderColor: FG_COLORS,
         borderWidth: 1
       }]
     },
@@ -61,48 +65,6 @@ function drawPie(options) {
       scales: {
         yAxes: [{
           display: false
-        }]
-      }
-    }
-  });
-}
-
-function drawBars(options) {
-  var ctx = document.getElementById(options.element).getContext('2d');
-  return new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: options.labels,
-      datasets: [{
-        data: options.values,
-        backgroundColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      legend: {
-        display: false
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
         }]
       }
     }
@@ -127,25 +89,20 @@ function createChartDiv(parentDiv, name) {
 function drawChartOf(chartModel, instants, elementId) {
   let data = chartModel.drawModel(instants);
 
-  if (chartModel.chartType == "bars") {
-    drawBars({
-      element: elementId,
-      labels: data.labels,
-      values: data.values
-    });
-  } else {
-    drawPie({
-      element: elementId,
-      labels: data.labels,
-      values: data.values
-    });
+  let options = {
+    type: 'pie',
+    element: elementId,
+    labels: data.labels,
+    values: data.values
   }
+  if (chartModel.chartType == "bars") {
+    options.type = 'bar';
+  } 
+  draw(options); 
 
 }
 
 module.exports = {
-  drawPie: drawPie,
-  drawBars: drawBars,
   createChartDiv: createChartDiv,
   drawChartOf: drawChartOf
 }
