@@ -24,9 +24,7 @@ TODO: Installer
 launch tracker.sh in daemon with parameter "once" every minute in crontab, using "crontab -e" command
 
 i.e.
-<pre>
-* * * * * DISPLAY=:0 /opt/activity-tracker/tracker.sh once
-</pre>
+> \* \* \* \* \* DISPLAY=:0 /opt/activity-tracker/tracker.sh once
 
 ### Desktop App
 
@@ -46,13 +44,13 @@ Desktop-app: go to desktop-app folder and:
 ## RoadMap / Todo
 
 - Complete documentation
-- Writing tests
-- Refactor architecture with a solid MVC structure ( current version is just a proof of concept)
+- Writing more tests
+- Create a solid View Layer ( Dynamic Charts )
 - Tons of validations
 - CronTab installer script
 - Custom Filters (Matchers)
-- Private mode, at the moment anything will be tracked
-- Current daemon works on Linux, maybe Windows and MacOS will bu supported
+- Private mode, at the moment everything will be tracked
+- Current daemon works on Linux, maybe Windows and MacOS will be supported in the future
 
 ## Tech
 
