@@ -43,6 +43,7 @@ Desktop-app: go to desktop-app folder and:
 
 ## RoadMap / Todo
 
+- Date navigation
 - Complete documentation
 - Writing more tests
 - Create a solid View Layer ( Dynamic Charts )
