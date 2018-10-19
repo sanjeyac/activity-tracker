@@ -18,5 +18,5 @@ function getAll() {
 }
 
 module.exports = {
-    getDataFromDB: getDataFromDB
+    getAll: getAll
 }
