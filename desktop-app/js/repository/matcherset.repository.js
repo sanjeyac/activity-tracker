@@ -1,5 +1,7 @@
 const fs = require("fs");
-const db_path = require('../constants.js').CHART_CONF_JSON;
+const db_path = require('../../constants.js').CHART_CONF_JSON;
+const MatcherSet = require('../models/matcherset.js');
+const ChartDataModel = require('../models/chartdatamodel.js');
 
 /**
 * charts: [{
@@ -22,10 +24,10 @@ function getMatcherSetsFrom(sets){
 }
 
 function getAllFrom(conf){
-    conf.charts.map( chart => {
+    return conf.charts.map( chart => {
         let matchers = getMatcherSetsFrom( chart.matchersets );
-        return new ChartDataModel([set],chart.type,chart.name);
-    })
+        return new ChartDataModel(matchers,chart.type,chart.name);
+    });
 }
 
 module.exports = {getAllFrom, jsonConf};
