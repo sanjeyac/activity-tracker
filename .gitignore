@@ -3,3 +3,4 @@
 node_modules/
 package-lock.json
 activity.db
+desktop-app/yarn-error.log
