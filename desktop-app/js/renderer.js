@@ -1,10 +1,10 @@
-const DB = require('./db.js');
-const Charts = require('./charts.js');
+const Charts = require('./view/charts.js');
 const $ = require('jquery');
 const moment = require('moment');
 const Filters = require('./filters.js');
 const startToday = moment().startOf('day');
 const endToday = moment().endOf('day'); 
+const DataInstantsRepository = require('./repository/datainstants.repository.js');
 
 function isToday(input){
     return moment.unix(input.unixtime).isBetween(startToday,endToday);
@@ -62,7 +62,7 @@ function drawChartsFrom(data){
 }
 
 
-DB.getDataFromDB().then( allData => {
+DataInstantsRepository.getAll().then( allData => {
 
     let data = allData.filter(isToday);
 

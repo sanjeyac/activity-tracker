@@ -3,17 +3,6 @@ const db_path = require('../../constants.js').CHART_CONF_JSON;
 const MatcherSet = require('../models/matcherset.js');
 const ChartDataModel = require('../models/chartdatamodel.js');
 
-/**
-* charts: [{
-*       name: 'Browsers'    
-        type: ''
-*       matchersets: [{
-            name: 'Firefox'
-            matchers: ['Firefox']
-*       }]
-*     }
-* ]
-*/
 function jsonConf(){
     var contents = fs.readFileSync(db_path);
     return JSON.parse(contents);    

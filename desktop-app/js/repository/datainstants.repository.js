@@ -1,4 +1,4 @@
-const db_path = require('../constants.js').SQLITE_DB;
+const db_path = require('../../constants.js').SQLITE_DB;
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(db_path);
  
