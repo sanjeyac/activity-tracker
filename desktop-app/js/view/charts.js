@@ -1,4 +1,5 @@
 var Chart = require('chart.js');
+const $ = require('jquery');
 
 function drawPie(options) {
   var ctx = document.getElementById(options.element).getContext('2d');
@@ -82,6 +83,19 @@ function drawBars(options) {
   });
 }
 
+function createChartBox(){
+  const div = `
+    <div class="row top-spaced">
+      <div class="col">
+        <div class="card chart">
+          <label class="name">Applications</label>
+          <canvas class="chart" style="width:100%;height:150px"></canvas>
+        </div>
+      </div>
+    </div>  
+  `;
+  return $(div);
+}
 
 module.exports = {
   drawPie: drawPie,

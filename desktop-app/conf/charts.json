@@ -1,0 +1,115 @@
+{
+    "charts": [
+        {
+            "name": "Applications",
+            "type": "pie",
+            "matchersets": [
+                {
+                    "name": "Visual Studio Code",
+                    "matchers": [
+                        "Visual Studio"
+                    ]
+                },
+                {
+                    "name": "Firefox",
+                    "matchers": [
+                        "Firefox"
+                    ]
+                },
+                {
+                    "name": "Chrome",
+                    "matchers": [
+                        "Chrome"
+                    ]
+                },
+                {
+                    "name": "Terminal",
+                    "matchers": [
+                        "Terminal"
+                    ]
+                },
+                {
+                    "name": "NetBeans",
+                    "matchers": [
+                        "NetBeans"
+                    ]
+                },
+                {
+                    "name": "Terminal",
+                    "matchers": [
+                        "Terminal"
+                    ]
+                },
+                {
+                    "name": "Eclipse",
+                    "matchers": [
+                        "Eclipse"
+                    ]
+                },
+                {
+                    "name": "Atom",
+                    "matchers": [
+                        "Atom"
+                    ]
+                },
+                {
+                    "name": "Telegram",
+                    "matchers": [
+                        "Telegram"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Categories",
+            "type": "pie",
+            "matchersets": [
+                {
+                    "name": "Development",
+                    "matchers": [
+                        "Visual Studio",
+                        "Eclipse",
+                        "NetBeans"                        
+                    ]
+                },
+                {
+                    "name": "Web",
+                    "matchers": [
+                        "Firefox",
+                        "Chrome"
+                    ]
+                },
+                {
+                    "name": "Tools",
+                    "matchers": [
+                        "Terminal"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Webpages",
+            "type": "bars",
+            "matchersets": [
+                {
+                    "name": "Facebook",
+                    "matchers": [
+                        "Facebook"
+                    ]
+                },
+                {
+                    "name": "Mail",
+                    "matchers": [
+                        "Mail"
+                    ]
+                },
+                {
+                    "name": "GitHub",
+                    "matchers": [
+                        "GitHub"
+                    ]
+                }
+            ]
+        }    
+    ]
+}

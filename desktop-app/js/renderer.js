@@ -38,6 +38,8 @@ function drawChartsFrom(data){
     let conf = MatcherSetRepository.jsonConf();
     let chartsModels = MatcherSetRepository.getAllFrom(conf);
     let appChart = chartsModels[0];
+    let catChart = chartsModels[1];
+    let webChart = chartsModels[2];
 
     let apps = appChart.drawModel(data);
 
@@ -47,7 +49,7 @@ function drawChartsFrom(data){
         values: apps.values
     });    
 
-    let categories = Filters.with( Filters.Categories , windowData);
+    let categories = catChart.drawModel(data);
     Charts.drawPie({
         element: 'categorychart',
         labels: categories.labels,
@@ -55,9 +57,9 @@ function drawChartsFrom(data){
     });    
     
     let justWebPagesData = data
-        .map( item => item.window )
-        .filter( item => Filters.Applications.Firefox(item) || Filters.Applications.Chrome(item) ) ;
-    let webpages = Filters.with( Filters.WebPages , justWebPagesData);
+        .filter( item => Filters.Applications.Firefox(item.window) || Filters.Applications.Chrome(item.window) ) ;
+
+    let webpages = webChart.drawModel(justWebPagesData);
 
     Charts.drawBars({
         element: 'websitechart',
