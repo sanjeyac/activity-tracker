@@ -58,7 +58,7 @@ module.exports = {
                 for (var k in data){
                     var el = data[k];
                     var res = filterFunction(el);
-                    console.log( "filtering: ",el,res,filter)
+                    // console.log( "filtering: ",el,res,filter)
                 }
                 let value = data.filter(filterFunction).length;
                 if (value>0){

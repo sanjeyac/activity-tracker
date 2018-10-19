@@ -7,6 +7,7 @@ class ChartDataModel {
     }
 
     drawModel(datainstants) {
+        console.log(datainstants)
         let labels = this.matcherSets.map( set => set.name );
         let values = this.matcherSets.map( set => set.count(datainstants) );
         return {labels,values};

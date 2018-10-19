@@ -5,6 +5,7 @@ const Filters = require('./filters.js');
 const startToday = moment().startOf('day');
 const endToday = moment().endOf('day'); 
 const DataInstantsRepository = require('./repository/datainstants.repository.js');
+const MatcherSetRepository = require('./repository/matcherset.repository.js');
 
 function isToday(input){
     return moment.unix(input.unixtime).isBetween(startToday,endToday);
@@ -33,7 +34,12 @@ function calculateMainKPIfrom(data){
 function drawChartsFrom(data){
 
     let windowData = data.map ( item => item.window );
-    let apps = Filters.with( Filters.Applications , windowData);
+    
+    let conf = MatcherSetRepository.jsonConf();
+    let chartsModels = MatcherSetRepository.getAllFrom(conf);
+    let appChart = chartsModels[0];
+
+    let apps = appChart.drawModel(data);
 
     Charts.drawPie({
         element: 'appchart',
@@ -65,6 +71,7 @@ function drawChartsFrom(data){
 DataInstantsRepository.getAll().then( allData => {
 
     let data = allData.filter(isToday);
+    console.log("loaded data", data);
 
     calculateMainKPIfrom(data);
     drawChartsFrom(data);
