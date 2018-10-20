@@ -4,18 +4,13 @@ const moment = require('moment');
 const Filters = require('./filters.js');
 const startToday = moment().startOf('day');
 const endToday = moment().endOf('day'); 
+const DataInstant = require('./models/datainstant.js');
 const DataInstantsRepository = require('./repository/datainstants.repository.js');
 const MatcherSetRepository = require('./repository/matcherset.repository.js');
 
-function isToday(input){
-    return moment.unix(input.unixtime).isBetween(startToday,endToday);
-}
-
 function calculateMainKPIfrom(data){
-    let start = data.map( item => item.unixtime).reduce( (item,acc) => Math.min(item,acc) );
-    let startTime = moment.unix(start);
-    let last = data.map( item => item.unixtime).reduce( (item,acc) => Math.max(item,acc) );
-    let lastTime = moment.unix(last);    
+    let startTime = moment.unix( DataInstant.minOf(data) );
+    let lastTime = moment.unix( DataInstant.maxOf(data) );    
     $('#startTime').html(startTime.format("HH:mm"));
     $('#lastTime').html(lastTime.format("HH:mm"));
     let diff = lastTime.diff(startTime)
@@ -41,7 +36,7 @@ function drawChartsFrom(data){
 }
 
 DataInstantsRepository.getAll().then( allData => {
-    let data = allData.filter(isToday);
+    let data = allData.filter( instant => instant.isToday() );
     calculateMainKPIfrom(data);
     drawChartsFrom(data);
 }).catch(err=> console.error(err));
