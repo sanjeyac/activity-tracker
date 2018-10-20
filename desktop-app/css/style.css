@@ -41,3 +41,7 @@ body {
 .card.chart{
     height: 200px;
 }
+
+#chartsBoxes .col-sm-6 {
+    margin-top: 30px;
+}

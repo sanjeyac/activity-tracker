@@ -24,50 +24,20 @@ function calculateMainKPIfrom(data){
     $('#efficency').html('Soon..');
 }
 
-//grouping utility
-function groupByTwo(array){
-    return array.reduce( function(acc,item){
-      if (acc.length == 0){
-        acc.push([item]);
-        return acc;
-      }
-      var lastElement = acc[acc.length-1];
-      if ( lastElement.length < 2 ){
-        lastElement.push(item);
-        return acc;
-      }
-      acc.push([item]);
-      return acc;
-    }, [] )  
-  }
-
 function drawChartsFrom(data){
     let conf = MatcherSetRepository.jsonConf();
     let chartsModels = MatcherSetRepository.getAllFrom(conf);
-    $('#chartsBoxes').append('<div class="row top-spaced" id="ch_row"></div>');
+    var container = $('#chartsBoxes');
 
-    groupByTwo(chartsModels)
-        .forEach( (couple, index) => {
-            let row = $(`<div class="row top-spaced" id="row_${index}"></div>`);
-            $('#chartsBoxes').append(row);
-
-            let id0 = null;
-            let id1 = null;
-
-            if(couple[0]){
-                id0 = Charts.createChartDiv(`#row_${index}`,couple[0].dom);
-            }
-            if(couple[1]){
-                id1 = Charts.createChartDiv(`#row_${index}`,couple[1].dom);
-            }
-            if(id0){
-                Charts.drawChartOf(couple[0],data,id0);
-            }
-            if(id1){
-                Charts.drawChartOf(couple[1],data,id1);
-            }            
+    chartsModels
+        .map( cm => {
+            let domElement = Charts.createChartDiv(container, cm.dom);
+            $('#'+domElement).parent().parent().addClass('col-sm-6'); //setup layout
+            return { domElement: domElement,  model: cm };
+        }).forEach( item => {
+            //posticipate chart rendering 
+            Charts.drawChartOf( item.model, data, item.domElement );
         });
-    
 }
 
 DataInstantsRepository.getAll().then( allData => {

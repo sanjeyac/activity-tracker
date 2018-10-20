@@ -4,9 +4,9 @@ let mainWindow
 
 function createWindow () {
   mainWindow = new BrowserWindow({width: 800, height: 700, frame:true})
-  mainWindow.setMenu(null);
+  // mainWindow.setMenu(null);
   mainWindow.loadFile('index.html')
-  //mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
   mainWindow.on('closed', function () {
     mainWindow = null
   })
