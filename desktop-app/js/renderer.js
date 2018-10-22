@@ -2,11 +2,12 @@ const Charts = require('./view/charts.js');
 const $ = require('jquery');
 const moment = require('moment');
 const Filters = require('./filters.js');
-const startToday = moment().startOf('day');
-const endToday = moment().endOf('day'); 
 const DataInstant = require('./models/datainstant.js');
 const DataInstantsRepository = require('./repository/datainstants.repository.js');
 const MatcherSetRepository = require('./repository/matcherset.repository.js');
+
+let startTime = moment().startOf('day');
+let endTime = moment().endOf('day'); 
 
 let date = moment();
 
@@ -20,7 +21,7 @@ function calculateMainKPIfrom(data){
     $('#total').html(hours);
     $('#efficency').html('Soon..');
 
-    let date = moment().format(' D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
+    let date = startTime.format('D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
     $('#btnChartsDate').html(date);
 
 }
@@ -48,11 +49,37 @@ function drawChartsFrom(data){
         });
 }
 
+function prevDay(){
+    $('#chartsBoxes').html('');
+    startTime = startTime.add(-1,'days');
+    endTime = endTime.add(-1,'days');
+    loadData(startTime, endTime);
+}
+
+function nextDay(){
+    $('#chartsBoxes').html('');
+    startTime = startTime.add(1,'days');
+    endTime = endTime.add(1,'days');
+    loadData(startTime, endTime);
+}
+
+function loadData(start,end){
+    DataInstantsRepository.getBetween(start.unix(), end.unix()).then( data => {
+        // let data = allData.filter( instant => instant.isToday() );
+        console.log(startTime,endTime,data)
+        if (data.length>0){
+            calculateMainKPIfrom(data);
+            drawChartsFrom(data);
+        }else{
+            $('#chartsBoxes').html('');
+            let date = startTime.format('D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
+            $('#btnChartsDate').html(date);            
+        }
+    }).catch(err=> console.error(err));
+}
+
 
 // === MAIN 
-
-DataInstantsRepository.getBetween(startToday.unix(), endToday.unix()).then( allData => {
-    let data = allData.filter( instant => instant.isToday() );
-    calculateMainKPIfrom(data);
-    drawChartsFrom(data);
-}).catch(err=> console.error(err));
+$('#prevDayBtn').click(prevDay);
+$('#nextDayBtn').click(nextDay);
+loadData(startTime, endTime);
