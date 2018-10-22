@@ -45,3 +45,43 @@ body {
 #chartsBoxes .col-sm-6 {
     margin-top: 30px;
 }
+
+.chartbox-margin {
+    margin-top: 30px;
+}
+
+
+.text-center{
+    text-align: center;
+}
+
+.btn-row{
+    margin-bottom: 30px;
+}
+
+.btn-group-center{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-group-center .btn {
+    background-color: #26314c;
+    border-color: #26314c;
+}
+
+.btn-group-center .btn:first-child{
+    border-left: 3px solid #3aa1b8;
+}
+
+.btn-group-center .btn:first-child:hover{
+    border-left: 3px solid #e7552f;
+}
+
+.btn-group-center .right-btn{
+    border-right: 3px solid #3aa1b8;
+}
+
+.btn-group-center .right-btn:hover{
+    border-right: 3px solid #e7552f;
+}
+

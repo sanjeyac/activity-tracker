@@ -16,7 +16,7 @@ function getMatcherSetsFrom(sets){
 function getAllFrom(conf){
     return conf.charts.map( chart => {
         let matchers = getMatcherSetsFrom( chart.matchersets );
-        return new ChartDataModel(matchers,chart.type,chart.name);
+        return new ChartDataModel(matchers,chart.type,chart.name,chart.width);
     });
 }
 

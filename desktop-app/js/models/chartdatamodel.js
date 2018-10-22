@@ -1,9 +1,10 @@
 class ChartDataModel {
 
-    constructor(matcherSets,chartType,domElement) {
+    constructor(matcherSets,chartType,domElement, width) {
         this.dom = domElement;
         this.matcherSets = matcherSets;
         this.chartType = chartType;
+        this.width = width;
     }
 
     drawModel(datainstants) {

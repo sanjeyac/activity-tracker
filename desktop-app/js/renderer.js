@@ -8,6 +8,8 @@ const DataInstant = require('./models/datainstant.js');
 const DataInstantsRepository = require('./repository/datainstants.repository.js');
 const MatcherSetRepository = require('./repository/matcherset.repository.js');
 
+let date = moment();
+
 function calculateMainKPIfrom(data){
     let startTime = moment.unix( DataInstant.minOf(data) );
     let lastTime = moment.unix( DataInstant.maxOf(data) );    
@@ -17,6 +19,10 @@ function calculateMainKPIfrom(data){
     let hours = moment.utc(diff).format("H:mm");
     $('#total').html(hours);
     $('#efficency').html('Soon..');
+
+    let date = moment().format(' D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
+    $('#btnChartsDate').html(date);
+
 }
 
 function drawChartsFrom(data){
@@ -25,9 +31,16 @@ function drawChartsFrom(data){
     var container = $('#chartsBoxes');
 
     chartsModels
-        .map( cm => {
+        .map( (cm, index) => {
             let domElement = Charts.createChartDiv(container, cm.dom);
-            $('#'+domElement).parent().parent().addClass('col-sm-6'); //setup layout
+            console.log(cm)
+            if (cm.width){
+                $('#'+domElement).parent().parent().addClass('col-sm-'+cm.width); //setup layout
+            }else{
+                $('#'+domElement).parent().parent().addClass('col-sm-6'); //setup layout
+            }
+            $('#'+domElement).parent().parent().addClass('chartbox-margin');
+            
             return { domElement: domElement,  model: cm };
         }).forEach( item => {
             //posticipate chart rendering 
@@ -35,6 +48,8 @@ function drawChartsFrom(data){
         });
 }
 
+
+// === MAIN 
 DataInstantsRepository.getAll().then( allData => {
     let data = allData.filter( instant => instant.isToday() );
     calculateMainKPIfrom(data);
