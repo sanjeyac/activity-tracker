@@ -58,6 +58,8 @@ function prevDay(){
 
 function nextDay(){
     $('#chartsBoxes').html('');
+    var now = moment();
+
     startTime = startTime.add(1,'days');
     endTime = endTime.add(1,'days');
     loadData(startTime, endTime);
