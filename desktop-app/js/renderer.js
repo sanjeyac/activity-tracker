@@ -50,7 +50,8 @@ function drawChartsFrom(data){
 
 
 // === MAIN 
-DataInstantsRepository.getAll().then( allData => {
+
+DataInstantsRepository.getBetween(startToday.unix(), endToday.unix()).then( allData => {
     let data = allData.filter( instant => instant.isToday() );
     calculateMainKPIfrom(data);
     drawChartsFrom(data);

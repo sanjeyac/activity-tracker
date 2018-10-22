@@ -13,10 +13,16 @@ class DataInstant {
     }    
 
     static minOf(instants){
+        if (!instants || instants.length==0){
+            return null;
+        }
         return instants.map( item => item.unixtime).reduce( (item,acc) => Math.min(item,acc) );
     }
 
     static maxOf(instants){
+        if (!instants || instants.length==0){
+            return null;
+        }
         return instants.map( item => item.unixtime).reduce( (item,acc) => Math.max(item,acc) );
     }
 
