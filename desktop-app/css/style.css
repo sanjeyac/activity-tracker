@@ -85,3 +85,11 @@ body {
     border-right: 3px solid #e7552f;
 }
 
+.no-data{
+    margin-top: 20%;
+    color: #26314c;
+    font-size: 5em;
+    font-weight: bolder;
+    text-align: center;
+    width: 100%;
+}

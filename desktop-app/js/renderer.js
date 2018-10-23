@@ -26,6 +26,18 @@ function calculateMainKPIfrom(data){
 
 }
 
+function clear(){
+    $('#total').html('N.D.');
+    $('#efficency').html('Soon..');
+    $('#startTime').html('N.D.');
+    $('#lastTime').html('N.D.');   
+    let date = startTime.format('D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
+    $('#btnChartsDate').html(date);   
+    $('#chartsBoxes').html('<div class="no-data">NO DATA</div>');
+    
+
+}
+
 function drawChartsFrom(data){
     let conf = MatcherSetRepository.jsonConf();
     let chartsModels = MatcherSetRepository.getAllFrom(conf);
@@ -73,9 +85,7 @@ function loadData(start,end){
             calculateMainKPIfrom(data);
             drawChartsFrom(data);
         }else{
-            $('#chartsBoxes').html('');
-            let date = startTime.format('D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
-            $('#btnChartsDate').html(date);            
+            clear();           
         }
     }).catch(err=> console.error(err));
 }
