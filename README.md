@@ -28,7 +28,11 @@ i.e.
 
 ### Desktop App
 
-TODO: binary package
+Create binary package
+
+> yarn package
+
+TODO: make binary releases
 
 ####  Running from source
 
