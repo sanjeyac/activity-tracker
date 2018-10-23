@@ -1,7 +1,6 @@
 const Charts = require('./view/charts.js');
 const $ = require('jquery');
 const moment = require('moment');
-const Filters = require('./filters.js');
 const DataInstant = require('./models/datainstant.js');
 const DataInstantsRepository = require('./repository/datainstants.repository.js');
 const MatcherSetRepository = require('./repository/matcherset.repository.js');
