@@ -8,32 +8,40 @@ const MatcherSetRepository = require('./repository/matcherset.repository.js');
 
 let startTime = moment().startOf('day');
 let endTime = moment().endOf('day'); 
-
 let date = moment();
+
+const lblStartTime = $('#startTime');
+const lblLastTime = $('#lastTime');
+const lblTotal = $('#total');
+const lblEfficency = $('#efficency');
+const btnChartsDate = $('#btnChartsDate');
+const btnPrevDay = $('#prevDayBtn');
+const btnNextDay = $('#nextDayBtn');
+const divChartBoxes = $('#chartsBoxes');
 
 function calculateMainKPIfrom(data){
     let startTime = moment.unix( DataInstant.minOf(data) );
     let lastTime = moment.unix( DataInstant.maxOf(data) );    
-    $('#startTime').html(startTime.format("HH:mm"));
-    $('#lastTime').html(lastTime.format("HH:mm"));
+    lblStartTime.html(startTime.format("HH:mm"));
+    lblLastTime.html(lastTime.format("HH:mm"));
     let diff = lastTime.diff(startTime)
     let hours = moment.utc(diff).format("H:mm");
-    $('#total').html(hours);
-    $('#efficency').html('Soon..');
+    lblTotal.html(hours);
+    lblEfficency.html('Soon..');
 
     let date = startTime.format('D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
-    $('#btnChartsDate').html(date);
+    btnChartsDate.html(date);
 
 }
 
 function clear(){
-    $('#total').html('N.D.');
+    lblTotal.html('N.D.');
     $('#efficency').html('Soon..');
-    $('#startTime').html('N.D.');
-    $('#lastTime').html('N.D.');   
+    lblStartTime.html('N.D.');
+    lblLastTime.html('N.D.');   
     let date = startTime.format('D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
-    $('#btnChartsDate').html(date);   
-    $('#chartsBoxes').html('<div class="no-data">NO DATA</div>');
+    btnChartsDate.html(date);   
+    divChartBoxes.html('<div class="no-data">NO DATA</div>');
     
 
 }
@@ -41,7 +49,7 @@ function clear(){
 function drawChartsFrom(data){
     let conf = MatcherSetRepository.jsonConf();
     let chartsModels = MatcherSetRepository.getAllFrom(conf);
-    var container = $('#chartsBoxes');
+    var container = divChartBoxes;
 
     chartsModels
         .map( (cm, index) => {
@@ -62,14 +70,14 @@ function drawChartsFrom(data){
 }
 
 function prevDay(){
-    $('#chartsBoxes').html('');
+    divChartBoxes.html('');
     startTime = startTime.add(-1,'days');
     endTime = endTime.add(-1,'days');
     loadData(startTime, endTime);
 }
 
 function nextDay(){
-    $('#chartsBoxes').html('');
+    divChartBoxes.html('');
     var now = moment();
 
     startTime = startTime.add(1,'days');
@@ -92,6 +100,6 @@ function loadData(start,end){
 
 
 // === MAIN 
-$('#prevDayBtn').click(prevDay);
-$('#nextDayBtn').click(nextDay);
+btnPrevDay.click(prevDay);
+btnNextDay.click(nextDay);
 loadData(startTime, endTime);
