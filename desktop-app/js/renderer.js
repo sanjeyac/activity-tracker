@@ -6,9 +6,11 @@ const DataInstant = require('./models/datainstant.js');
 const DataInstantsRepository = require('./repository/datainstants.repository.js');
 const MatcherSetRepository = require('./repository/matcherset.repository.js');
 
+//date
 let startTime = moment().startOf('day');
 let endTime = moment().endOf('day'); 
 let date = moment();
+const today = moment();
 
 const lblStartTime = $('#startTime');
 const lblLastTime = $('#lastTime');
@@ -78,8 +80,6 @@ function prevDay(){
 
 function nextDay(){
     divChartBoxes.html('');
-    var now = moment();
-
     startTime = startTime.add(1,'days');
     endTime = endTime.add(1,'days');
     loadData(startTime, endTime);
