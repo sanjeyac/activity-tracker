@@ -47,13 +47,11 @@ Desktop-app: go to desktop-app folder and:
 
 ## RoadMap / Todo
 
-- Date navigation
-- Complete documentation
+- UI driven chart creator ( currently charts are configured in a json configuration file )
 - Writing more tests
-- Create a solid View Layer ( Dynamic Charts )
+- Create a solid View Layer
 - Tons of validations
 - CronTab installer script
-- Custom Filters (Matchers)
 - Private mode, at the moment everything will be tracked
 - Current daemon works on Linux, maybe Windows and MacOS will be supported in the future
 

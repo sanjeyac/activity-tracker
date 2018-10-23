@@ -12,6 +12,8 @@ let endTime = moment().endOf('day');
 let date = moment();
 const today = moment();
 
+
+//ui elements
 const lblStartTime = $('#startTime');
 const lblLastTime = $('#lastTime');
 const lblTotal = $('#total');
@@ -30,10 +32,8 @@ function calculateMainKPIfrom(data){
     let hours = moment.utc(diff).format("H:mm");
     lblTotal.html(hours);
     lblEfficency.html('Soon..');
-
     let date = startTime.format('D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
     btnChartsDate.html(date);
-
 }
 
 function clear(){
@@ -44,8 +44,6 @@ function clear(){
     let date = startTime.format('D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
     btnChartsDate.html(date);   
     divChartBoxes.html('<div class="no-data">NO DATA</div>');
-    
-
 }
 
 function drawChartsFrom(data){
@@ -87,8 +85,6 @@ function nextDay(){
 
 function loadData(start,end){
     DataInstantsRepository.getBetween(start.unix(), end.unix()).then( data => {
-        // let data = allData.filter( instant => instant.isToday() );
-        console.log(startTime,endTime,data)
         if (data.length>0){
             calculateMainKPIfrom(data);
             drawChartsFrom(data);
