@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "rebuild": "electron-rebuild -f -w sqlite3",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [

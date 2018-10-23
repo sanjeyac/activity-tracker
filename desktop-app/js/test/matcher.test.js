@@ -16,6 +16,13 @@ test('matcher with case insensitive regex "firefox" on instant "Mozilla Firefox"
 });
 
 
+test('matcher with case insensitive regex as string "firefox" on instant "Mozilla Firefox"', () => {
+    let instant = new DataInstant('Mozilla Firefox', 1);
+    let matcher = new Matcher('/firefox/gi','Firefox Matcher name');
+    expect(matcher.match(instant)).toBe(true);
+});
+
+
 test('empty matcher should not work with empty regex', () => {
     let instant = new DataInstant('Mozilla Firefox', 1);
     let matcher = new Matcher('','Firefox Matcher name');
