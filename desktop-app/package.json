@@ -2,11 +2,13 @@
   "name": "activity-tracker",
   "version": "0.0.1",
   "description": "Desktop software and activity usage tracker",
+  "productName": "Activity Tracker",
   "main": "js/main.js",
   "scripts": {
     "start": "electron .",
     "rebuild": "electron-rebuild -f -w sqlite3",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "package": "electron-packager . --overwrite --platform=linux --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=../release-builds"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -19,6 +21,7 @@
   "author": "sanjeyac",
   "devDependencies": {
     "electron": "^2.0.11",
+    "electron-packager": "^12.2.0",
     "electron-rebuild": "^1.6.0",
     "jest": "^23.6.0"
   },
