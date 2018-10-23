@@ -9,11 +9,12 @@
 
 #params
 DB=/opt/activityTracker/activity.db
-
+TRACKER_PATH=/opt/activityTracker/activity-tracker/daemon/tracker.sh
 USER=$(whoami)
-#echo "$(date) running as $USER" >> /tmp/trackerlog
+CRONTAB_LINE="* * * * * DISPLAY=$DISPLAY $TRACKER once"
 
-#posix version
+
+#insert current active window title in a sqlite db
 track() {
   WINDOW=$(xdotool getactivewindow getwindowname)
   UNIXTIME=$(date +%s)
@@ -29,11 +30,23 @@ track() {
   fi
 }
 
-#applications
+
+
+# install script call in cron
+install_cron() {
+  crontab -l > /tmp/mycron
+  echo $CRONTAB_LINE >> /tmp/mycron
+  crontab /tmp/mycron
+  rm /tmp/mycron
+}
+
+
+
+# main
 case "$1" in
 
   start)
-    #loop without cron tab
+    #loop without cron tab every minute
     echo -n "Starting Tracking Deamon .... "
     while [ true ]
     do
@@ -44,8 +57,16 @@ case "$1" in
     ;;
 
   init)
-    echo "init db"
-    sqlite3 $DB "CREATE TABLE activity ( unixtime INTEGER NOT NULL, window TEXT NOT NULL, PRIMARY KEY(unixtime) );"
+
+    #if file does not exists
+    if [ ! -f $DB ]; then
+      echo "Initialize db in $DB"
+      sqlite3 $DB "CREATE TABLE activity ( unixtime INTEGER NOT NULL, window TEXT NOT NULL, PRIMARY KEY(unixtime) );"
+      echo "Installing crontab"
+    fi
+
+    echo "install crontab line"
+    install_cron
     ;;
 
   once)
@@ -53,8 +74,17 @@ case "$1" in
     track
     ;;
 
+  cronline)
+    echo "Add this line to your crontab with 'crontab -e' : $CRONTAB_LINE"
+    track
+    ;;    
+
   *)
-    echo "Usage: $0 start"
+    echo "Usage: $0 init | once | start \n"
+    echo "\tinit: initialize a cron line to schedule window tracking every minute (preferred way)"
+    echo "\tonce: insert current active window in sqlite db"
+    echo "\tstart: start a bash based loop (deprecated just for testing purpose)"
+    echo "\cronline: manual installation in crontab"    
     exit 1
     ;;
 esac
