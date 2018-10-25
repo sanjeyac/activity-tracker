@@ -9,9 +9,10 @@
 
 #params
 DB=/opt/activityTracker/activity.db
-TRACKER_PATH=/opt/activityTracker/activity-tracker/daemon/tracker.sh
+DIR=/opt/activityTracker
+TRACKER_PATH=/opt/activityTracker/tracker.sh
 USER=$(whoami)
-CRONTAB_LINE="* * * * * DISPLAY=$DISPLAY $TRACKER once"
+CRONTAB_LINE="* * * * * DISPLAY=$DISPLAY $TRACKER_PATH once"
 
 
 #insert current active window title in a sqlite db
@@ -35,9 +36,10 @@ track() {
 # install script call in cron
 install_cron() {
   crontab -l > /tmp/mycron
-  echo $CRONTAB_LINE >> /tmp/mycron
+  echo "Installing '$CRONTAB_LINE' in crontab"
+  echo "$CRONTAB_LINE" >> /tmp/mycron
   crontab /tmp/mycron
-  rm /tmp/mycron
+  #rm /tmp/mycron
 }
 
 
@@ -57,6 +59,11 @@ case "$1" in
     ;;
 
   init)
+    #create dir
+    mkdir -p $DIR
+    cp $0 $TRACKER_PATH
+    chmod +x $TRACKER_PATH
+    cp ../desktop-app/conf/charts.json $DIR
 
     #if file does not exists
     if [ ! -f $DB ]; then
