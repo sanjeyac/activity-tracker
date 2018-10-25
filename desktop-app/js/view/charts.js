@@ -71,6 +71,32 @@ function draw(options) {
   });
 }
 
+function drawTimeline(data) {
+  var ctx = document.getElementById(options.element).getContext('2d');
+  return new Chart(ctx, {
+    type: options.type,
+    data: {
+      labels: options.labels,
+      datasets: [{
+        data: options.values,
+        backgroundColor: BG_COLORS,
+        borderColor: FG_COLORS,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          display: false
+        }]
+      }
+    }
+  });
+}
+
 function createChartDiv(parentDiv, name) {
   let chart_id = "chart_" + makeid();
   let chart = $(`
