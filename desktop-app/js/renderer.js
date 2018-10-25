@@ -31,8 +31,7 @@ function calculateMainKPIfrom(data){
     let hours = moment.utc(diff).format("H:mm");
     lblTotal.html(hours);
     lblEfficency.html('Soon..');
-    let date = startTime.format('D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
-    btnChartsDate.html(date);
+    renderDate();
 }
 
 function clear(){
@@ -40,9 +39,15 @@ function clear(){
     $('#efficency').html('Soon..');
     lblStartTime.html('N.D.');
     lblLastTime.html('N.D.');   
-    let date = startTime.format('D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
-    btnChartsDate.html(date);   
     divChartBoxes.html('<div class="no-data">NO DATA</div>');
+    renderDate();
+}
+
+function renderDate(){
+    let date = startTime.format('D MMMM YYYY'); // October 22nd 2018, 7:20:06 am
+    btnChartsDate.html(`<div class="dom">${date}</div>`);   
+    let dayOfWeek = startTime.format('dddd');
+    btnChartsDate.append(`<div class="dow">${dayOfWeek}</div>`);
 }
 
 function drawChartsFrom(data){
