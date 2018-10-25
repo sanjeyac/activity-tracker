@@ -60,7 +60,10 @@ case "$1" in
 
   init)
     #create dir
+    echo "Creating folder $DIR ..."
     mkdir -p $DIR
+    sudo chown $USER: $DIR
+
     cp $0 $TRACKER_PATH
     chmod +x $TRACKER_PATH
     cp ../desktop-app/conf/charts.json $DIR

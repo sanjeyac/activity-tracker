@@ -20,13 +20,12 @@ you need xdotool
 install xdotool in ubuntu/debian:
 
 > sudo apt install xdotool
-TODO: Installer
 
-### Manual installation
-launch tracker.sh in daemon with parameter "once" every minute in crontab, using "crontab -e" command
+> git clone https://github.com/sanjeyac/activity-tracker.git
 
-i.e.
-> \* \* \* \* \* DISPLAY=:0 /opt/activity-tracker/tracker.sh once
+> cd daemon
+
+> ./tracker.sh init
 
 ### Desktop App
 
@@ -37,7 +36,6 @@ Create binary package
 TODO: make binary releases
 
 ####  Running from source
-
 
 Desktop-app: go to desktop-app folder and:
 
@@ -60,7 +58,3 @@ Desktop-app: go to desktop-app folder and:
 ## Tech
 
 This project is based on [Electron](https://github.com/electron/electron)
-
-
-
-
