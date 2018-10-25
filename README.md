@@ -6,6 +6,8 @@ Activity Tracker is a Cloudless software usage tracker.
 
 - Tracker: Do you need to keep track of your time automatically? for projects, for works or simply "how many time have you spent on social networks today, is it necessary?"
 
+![Alt text](docs/screens.screen.png?raw=true "Title")
+
 ## Why this project?
 
 Life is an empty jar, you can fill it with Rocks (very important things like family, friends, life goals, etc.), Pebbles ( job, house, etc. ) and Sand ( small things that are remaining small), if you fill the jar with time wasting sand, there will be no space for Rocks and Pebbles.
